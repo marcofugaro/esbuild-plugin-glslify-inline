@@ -1,4 +1,7 @@
-// 👨‍🍳🤌
+// Really 👨‍🍳🤌 glslify compiler.
+// It doesn't rename imports, so you can import a function in
+// a string and use it in another. Read more at:
+// https://github.com/onnovisser/babel-plugin-glsl#imported-function-names
 import compile from 'babel-plugin-glsl/lib/compile.js'
 
 export default function glslifyInline() {
@@ -22,7 +25,7 @@ export default function glslifyInline() {
         text = text.replace(/import glsl from ('|")glslify('|");?/, '')
 
         // remove the unnecessary glsl function call
-        text = text.replaceAll('glsl`', '`')
+        text = text.replace(/glsl`/g, '`')
 
         // resolve glslify imports
         text = text.replace(/^(\s*)#pragma glslify(.*)/gm, (match) => {

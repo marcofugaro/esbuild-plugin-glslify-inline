@@ -16,9 +16,16 @@ yarn add --dev esbuild-plugin-glslify-inline
 
 ## Usage
 
+You can use into any `esbuild.mjs` script like this:
+
 ```js
+import glslifyInline from 'esbuild-plugin-glslify-inline'
 
+esbuild.build({
+  // ...
 
+  plugins: [glslifyInline()],
+})
 ```
 
 ## API
