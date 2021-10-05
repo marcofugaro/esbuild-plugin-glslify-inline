@@ -1,46 +1,24 @@
-# node-module-boilerplate
+# esbuild-plugin-glslify-inline
 
-> Boilerplate to kickstart creating a Node.js module
-
-This is what I use for [my own modules](https://www.npmjs.com/~sindresorhus).
-
-Also check out [`node-cli-boilerplate`](https://github.com/sindresorhus/node-cli-boilerplate).
-
-## Getting started
-
-**Click the "Use this template" button.**
-
-Alternatively, create a new directory and then run:
-
-```
-$ curl -fsSL https://github.com/sindresorhus/node-module-boilerplate/archive/main.tar.gz | tar -xz --strip-components=1
-```
-
-There's also a [Yeoman generator](https://github.com/sindresorhus/generator-nm).
-
----
-
-**Remove everything from here and above**
-
----
-
-# unicorn-fun
-
-> My awesome module
+> Transform glsl strings with glslify
 
 ## Install
 
 ```
-$ npm install unicorn-fun
+npm install --save-dev esbuild-plugin-glslify-inline
+```
+
+or
+
+```
+yarn add --dev esbuild-plugin-glslify-inline
 ```
 
 ## Usage
 
 ```js
-import unicornFun from 'unicorn-fun';
 
-unicornFun('unicorns');
-//=> 'unicorns & rainbows'
+
 ```
 
 ## API

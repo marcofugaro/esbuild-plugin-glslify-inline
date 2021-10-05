@@ -1,32 +1,37 @@
 {
-	"name": "unicorn-fun",
-	"version": "0.0.0",
-	"description": "My awesome module",
+	"name": "esbuild-plugin-glslify-inline",
+	"version": "1.0.0",
+	"description": "Transforms strings with glslify",
 	"license": "MIT",
-	"repository": "YOUR-GITHUB-USERNAME/unicorn-fun",
+	"repository": "marcofugaro/esbuild-plugin-glslify-inline",
 	"author": {
-		"name": "YOUR NAME",
-		"email": "YOUR EMAIL",
-		"url": "YOUR WEBSITE"
+		"name": "Marco Fugaro",
+		"email": "marco.fugaro@gmail.com",
+		"url": "https://marcofuga.ro"
 	},
 	"type": "module",
-	"exports": "./index.js",
+	"exports": "./src/index.js",
 	"engines": {
 		"node": ">=12"
 	},
 	"scripts": {
-		"test": "xo && ava"
+		"test": "ava"
 	},
 	"files": [
-		"index.js"
+		"src/"
 	],
 	"keywords": [
-		"unicorn",
-		"fun"
+		"esbuild",
+		"plugin",
+		"esbuild-plugin",
+		"glslify",
+		"glsl",
+		"inline"
 	],
-	"dependencies": {},
+	"dependencies": {
+		"babel-plugin-glsl": "^1.0.0"
+	},
 	"devDependencies": {
-		"ava": "^3.15.0",
-		"xo": "^0.37.0"
+		"ava": "^3.15.0"
 	}
 }
