@@ -1,13 +1,25 @@
-import test from 'ava';
-import unicornFun from './index.js';
+import fs from 'fs/promises'
+import path from 'path'
+import URL from 'url'
+import esbuild from 'esbuild'
+import test from 'ava'
+import { glslifyInline } from '../src/index.js'
 
-test('main', t => {
-	t.throws(() => {
-		unicornFun(123);
-	}, {
-		instanceOf: TypeError,
-		message: 'Expected a string, got number'
-	});
+const __dirname = path.dirname(URL.fileURLToPath(import.meta.url))
 
-	t.is(unicornFun('unicorns'), 'unicorns & rainbows');
-});
+test('works with a basic example', async (t) => {
+  const input = path.resolve(__dirname, './fixtures/basic.js')
+  const output = path.resolve(__dirname, './fixtures/generated/basic.js')
+
+  await esbuild.build({
+    entryPoints: [input],
+    outfile: output,
+    bundle: true,
+    format: 'esm',
+    plugins: [glslifyInline()],
+  })
+
+  const generated = await fs.readFile(output, 'utf-8')
+
+  t.snapshot(generated)
+})

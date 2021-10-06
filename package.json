@@ -1,7 +1,7 @@
 {
 	"name": "esbuild-plugin-glslify-inline",
 	"version": "0.0.0",
-	"description": "Transforms strings with glslify",
+	"description": "An esbuild plugin to transform inline GLSL strings with glslify",
 	"license": "MIT",
 	"repository": "marcofugaro/esbuild-plugin-glslify-inline",
 	"author": {
@@ -32,6 +32,8 @@
 		"babel-plugin-glsl": "^1.0.0"
 	},
 	"devDependencies": {
-		"ava": "^3.15.0"
+		"ava": "^3.15.0",
+		"esbuild": "^0.13.4",
+		"glsl-noise": "^0.0.0"
 	}
 }

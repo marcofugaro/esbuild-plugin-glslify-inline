@@ -1,6 +1,6 @@
 # esbuild-plugin-glslify-inline
 
-> Transform glsl strings with glslify
+> An [esbuild](https://github.com/evanw/esbuild) plugin to transform inline GLSL strings with [glslify](https://github.com/glslify/glslify).
 
 ## Install
 
@@ -19,32 +19,43 @@ yarn add --dev esbuild-plugin-glslify-inline
 You can use into any `esbuild.mjs` script like this:
 
 ```js
-import glslifyInline from 'esbuild-plugin-glslify-inline'
+import { build } from 'esbuild'
+import { glslifyInline } from 'esbuild-plugin-glslify-inline'
 
-esbuild.build({
-  // ...
-
+build({
+  entryPoints: ['input.js'],
+  outfile: 'output.js',
+  bundle: true,
   plugins: [glslifyInline()],
+}).catch(() => process.exit(1))
+```
+
+After that, you can use glslify normally with esbuild:
+
+```js
+import glsl from 'glslify'
+
+// ...
+
+const material = new THREE.MeshStandardMaterial()
+
+customizeVertexShader(material, {
+  head: glsl`
+    uniform float time;
+    uniform float speed;
+
+    // you can import glsl packages like this
+    #pragma glslify: noise = require(glsl-noise/simplex/3d)
+  `,
+  main: glsl`
+    // and use them in other parts of the shader
+    vec3 displacement = normal * noise(vec3(uv, time * speed));
+  `,
+  // hook that lets you modify the position
+  transformed: glsl`
+    transformed += displacement;
+  `,
 })
 ```
 
-## API
-
-### unicornFun(input, options?)
-
-#### input
-
-Type: `string`
-
-Lorem ipsum.
-
-#### options
-
-Type: `object`
-
-##### postfix
-
-Type: `string`\
-Default: `rainbows`
-
-Lorem ipsum.
+<!-- TODO note about customizeVertexShader -->
