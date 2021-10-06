@@ -1,6 +1,6 @@
 {
 	"name": "esbuild-plugin-glslify-inline",
-	"version": "0.0.0",
+	"version": "1.0.0",
 	"description": "An esbuild plugin to transform inline GLSL strings with glslify",
 	"license": "MIT",
 	"repository": "marcofugaro/esbuild-plugin-glslify-inline",
