@@ -1,4 +1,8 @@
 import { Plugin } from 'esbuild'
 
-declare function glslInline(): Plugin
+type Options = {
+  minify?: boolean
+}
+
+declare function glslInline(options?: Options): Plugin
 export { glslInline }

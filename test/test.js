@@ -23,3 +23,20 @@ test('works with a basic example', async (t) => {
 
   t.snapshot(generated)
 })
+
+test('works with a basic example but minified', async (t) => {
+  const input = path.resolve(__dirname, './fixtures/basic.js')
+  const output = path.resolve(__dirname, './fixtures/generated/basic-minified.js')
+
+  await esbuild.build({
+    entryPoints: [input],
+    outfile: output,
+    bundle: true,
+    format: 'esm',
+    plugins: [glslifyInline({ minify: true })],
+  })
+
+  const generated = await fs.readFile(output, 'utf-8')
+
+  t.snapshot(generated)
+})

@@ -4,8 +4,9 @@ import fs from 'fs/promises'
 // a string and use it in another. Read more at:
 // https://github.com/onnovisser/babel-plugin-glsl#imported-function-names
 import compile from 'babel-plugin-glsl/lib/compile.js'
+import { minifyShader } from './minifyShader.js'
 
-export function glslifyInline() {
+export function glslifyInline({ minify = false } = {}) {
   return {
     name: 'glslifyInline',
     setup(build) {
@@ -36,7 +37,10 @@ export function glslifyInline() {
             return cache[glslifyImport]
           }
 
-          const contents = compile(glslifyImport)
+          let contents = compile(glslifyImport)
+          if (minify) {
+            contents = minifyShader(contents)
+          }
           cache[glslifyImport] = contents
           return contents
         })

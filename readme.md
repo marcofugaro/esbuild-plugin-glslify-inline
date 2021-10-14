@@ -30,6 +30,8 @@ build({
 }).catch(() => process.exit(1))
 ```
 
+You can also minify the imported shaders with `glslifyInline({ minify: true })`.
+
 After that, you can use glslify normally with esbuild:
 
 ```js
